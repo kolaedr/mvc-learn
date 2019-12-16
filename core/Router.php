@@ -1,8 +1,13 @@
 <?php
 namespace Core;
-
 class Router
 {
+    public static function redirect($p)
+    {
+        header("views/$p.php");
+        die();      //останавливает выполнение всего
+    }
+
     public static function start()
     {
         $url = isset($_GET['url']) ? $_GET['url'] : '/';
@@ -15,11 +20,27 @@ class Router
         if (!file_exists($fileController)) {
             die('File controller not found');
         }
-        $strController = 'Controllers\\'.$nameController;       //создаем строку для вызова контролера
+        $strController = 'Controllers\\' . $nameController;       //создаем строку для вызова контролера
         $controller = new $strController();
         if (!method_exists($controller, $nameMethod)) {
             die('Method controller not found');
         }
         $controller->$nameMethod();
+        if (isset($_POST['action'])) {
+            $form = $_POST['action'];
+            list($nameController, $nameMethod) = explode('@', $form);
+            $fileController = "controllers/{$nameController}.php";
+            if (!file_exists($fileController)) {
+                die('File controller not found');
+            }
+            $strController = 'Controllers\\' . $nameController;
+            $controller = new $strController();
+            if (!method_exists($controller, $nameMethod)) {
+                die('Method controller not found');
+            }
+            $controller->$nameMethod();
+        }
     }
+
+
 }
