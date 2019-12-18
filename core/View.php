@@ -13,4 +13,6 @@ class View
         require_once "views/{$path}.php";
         require_once 'views/footer.php';
     }
+
+        
 }
