@@ -13,24 +13,24 @@
                 <td>$items->name</td>
             </tr>
             <tr>
-                <td>Username</td>
+                <td>Username:</td>
                 <td>$items->username</td>
             </tr>
             <tr>
-                <td>Address</td>
+                <td>Address:</td>
                 <td>" . $items->address->street . ", " . $items->address->city . "</td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td>Email:</td>
                 <td>$items->email</td>
             </tr>
             <tr>
-                <td>Phone</td>
+                <td>Phone:</td>
                 <td>$items->phone</td>
             </tr>
             <tr>
-                <td>Website</td>
-                <td>$items->website</td>
+                <td>Website:</td>
+                <td><a href='http://$items->website' target='_blank'>$items->website</a></td>
             </tr>
         </table>
         <button  class='btn btn-warning show-posts'>Show posts</button>

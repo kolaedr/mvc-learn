@@ -4,7 +4,7 @@ class Router
 {
     public static function redirect($p)
     {
-        header("views/$p.php");
+        header('Location: '.$p);
         die();      //останавливает выполнение всего
     }
 

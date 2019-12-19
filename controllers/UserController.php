@@ -19,16 +19,20 @@ class UserController extends \Core\Controller
     {
         $login = $_POST['login'] ?? null;
         $password = $_POST['password'] ?? null;
-        $title = 'Profile user';
+        
         // \Core\View::render('home/contacts', compact('title'));
         // echo  'working';
         //\Core\Router::redirect('profile'); 
-        if (!empty($login) && !empty($password)) {
+        if (empty($login) && !empty($password)) {
+            $title = 'Profile user';
             \Controllers\UserController::profilePage();
-            // \Core\View::render('user/profile', compact('title', 'login', 'password'));
+            \Core\View::render('user/profile', compact('title', 'login', 'password'));
             // \Core\Router::redirect('user/profile'); 
+            header('Location: /profile');
 
         } else {
+            echo 22;
+            $title = 'FUUUUUUUU';
             \Core\View::render('user/login', compact('title'));
         }
     }
@@ -49,15 +53,18 @@ class UserController extends \Core\Controller
         // \Core\View::render('home/contacts', compact('title'));
         // echo  'working';
         //\Core\Router::redirect('profile'); 
-        if (!empty($login) && !empty($password) && $passwordConfirm == $password) {
+        if (empty($login) && $passwordConfirm == $password) {
             $title = 'You are registered';
-            \Controllers\UserController::profilePage();
+            // \Controllers\UserController::profilePage();
             \Core\View::render('user/profile', compact('title', 'login'));
-            // \Core\Router::redirect('user/profile'); 
+            // \Core\Router::redirect('profile'); 
+            exit;
 
         } else if ($passwordConfirm != $password) {
             $text = 'Password not confirm';
+            echo 'Password not confirm';
             \Core\View::render('user/registration', compact('title', 'text'));
+            exit;
         } else {
             \Core\View::render('user/login', compact('title'));
         }
@@ -74,9 +81,9 @@ class UserController extends \Core\Controller
     public function allUsersPage()
     {
         $users = require_once 'base/users.php';
-        
+
         $allUsers = [];
-        foreach($users as $name=>$mail){
+        foreach ($users as $name => $mail) {
             $allUsers[] = "<li class=''> $name (email: $mail) </li>";
         }
         $title = 'All Users page MVC';

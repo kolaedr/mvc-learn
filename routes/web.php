@@ -8,4 +8,5 @@ return [
     'profile'=>'UserController@profilePage',
     'allUsers'=>'UserController@allUsersPage',
     'copywriters'=>'CopywritersController@copywriterList',
+    // 'loginuser'=>'UserController@loginUser',
 ];

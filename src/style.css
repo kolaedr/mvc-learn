@@ -26,19 +26,22 @@
 }
 
 .copywriters p:hover{
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 123, 255, 1);
+    color: #fff;;
+    cursor: pointer;
 }
 
 .user-info{
     width: 100%;
     padding: 1em 0;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .user-info table {
     width: 100%;
     border: 1px solid #ccc;
     margin-bottom: 1em;
+    text-align: start;
 }
 
 .user-info table td:first-child{
@@ -54,6 +57,11 @@
     border: 1px solid #ccc;
 }
 
+.show-posts{
+    margin: 0 auto;
+    display: block;
+}
+
 .post-list{
     display: flex;
     flex-wrap: wrap;
@@ -65,4 +73,9 @@
     padding: 1em;
     margin: 1em;
     border: 1px solid #ccc;
+}
+
+.bold{
+    font-weight: 700;
+    color: rgba(0, 123, 255, 1);;
 }

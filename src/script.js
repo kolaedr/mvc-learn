@@ -1,12 +1,23 @@
 let divsInfo = document.querySelectorAll('.user-info-list div');
 
 document.querySelector('.copywriters').addEventListener('click', (e) => {
+    console.log(e.target);
+    if (!e.target.classList.contains('bold')) {
+        for (const iterator of document.querySelectorAll('.copywriters p')) {
+            if (!e.target.classList.contains('bold') && iterator == e.target) {
+                iterator.classList.add('bold');
+            } else {
+                iterator.classList.remove('bold');
+            };
+        }
+    }
 
     for (const iterator of divsInfo) {
         if (iterator.getAttribute('data-id') == e.target.getAttribute('id')) {
             iterator.classList.remove('hidden');
         } else {
             iterator.classList.add('hidden');
+            // e.target.classList.remove('bold');
         }
     };
 
@@ -15,6 +26,7 @@ document.querySelector('.copywriters').addEventListener('click', (e) => {
 document.querySelector('.user-info-list').addEventListener('click', (e) => {
     e.preventDefault();
     if (e.target.classList.contains('show-posts') && !e.target.classList.contains('hide')) {
+
         console.log(e.target.previousSibling);
         fetch('https://jsonplaceholder.typicode.com/posts?userId=' + e.target.parentNode.getAttribute('data-id'))
             .then(response => response.json())
